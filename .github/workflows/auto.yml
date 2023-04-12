@@ -21,9 +21,6 @@ jobs:
         run: |
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt -nv -O ./list/proxy.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt -nv -O ./list/gfw.list
-		  wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/greatfire.txt -nv -O ./list/greatfire.list
-		  wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/telegramcidr.txt -nv -O ./list/telegramcidr.list
-		  wget https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list -nv -O ./list/Google.list
 
       - name: Commit file
         run: |
