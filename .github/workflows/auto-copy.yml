@@ -2,9 +2,7 @@ name: auto copy
 
 on:
   schedule:
-    - cron: 05 13 * * *
-  watch:
-    types: [started]
+    - cron: 09 13 * * *
   #push:
   #  branches:
   #    - main
@@ -12,8 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
-
     steps:
       - uses: actions/checkout@main
 
