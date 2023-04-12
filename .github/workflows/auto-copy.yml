@@ -1,8 +1,8 @@
-name: auto-copy
+name: auto copy
 
 on:
   schedule:
-    - cron: 51 12 * * *
+    - cron: 05 13 * * *
   watch:
     types: [started]
   #push:
@@ -15,7 +15,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - name: Run generate script
         run: |
@@ -30,7 +30,7 @@ jobs:
           git commit -m "Update `date +%Y/%m/%d\ %H:%M:%S\ %Z`" -a
 
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@main
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
 
@@ -39,4 +39,4 @@ jobs:
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           repository: ${{ github.repository }}
-          #retain_days: 1
+          retain_days: 1
