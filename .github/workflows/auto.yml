@@ -1,0 +1,45 @@
+name: auto copy
+
+on:
+  schedule:
+    - cron: 35 12 * * *
+  watch:
+    types: [started]
+  #push:
+  #  branches:
+  #    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id || ! github.event.sender.id
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Run generate script
+        run: |
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt -nv -O ./list/proxy.list
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt -nv -O ./list/gfw.list
+		  wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/greatfire.txt -nv -O ./list/greatfire.list
+		  wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/telegramcidr.txt -nv -O ./list/telegramcidr.list
+		  wget https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list -nv -O ./list/Google.list
+
+      - name: Commit file
+        run: |
+          git config --global user.email rls3nrve@duck.com
+          git config --global user.name chideap
+          git add .
+          git commit -m "Update `date +%Y/%m/%d\ %H:%M:%S\ %Z`" -a
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Cleanup Workflow Logs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          repository: ${{ github.repository }}
+          retain_days: 1
