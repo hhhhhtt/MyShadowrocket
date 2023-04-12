@@ -10,6 +10,10 @@ jobs:
         run: |
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt -nv -O ./list/proxy.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt -nv -O ./list/gfw.list
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/greatfire.txt -nv -O ./list/greatfire.list
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/tld-not-cn.txt -nv -O ./list/tld-not-cn.list
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/cncidr.txt -nv -O ./list/cncidr.list
+          wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt -nv -O ./list/direct.list
       - name: Commit file
         run: |
           git config --global user.email rls3nrve@duck.com
