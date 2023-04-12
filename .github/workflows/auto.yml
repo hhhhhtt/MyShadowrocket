@@ -2,7 +2,7 @@ name: auto copy
 
 on:
   schedule:
-    - cron: 35 12 * * *
+    - cron: 46 12 * * *
   watch:
     types: [started]
   #push:
