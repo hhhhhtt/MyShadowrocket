@@ -3,6 +3,13 @@ name: auto
 on:
   schedule:
     - cron:  '30 4,16 * * *'
+  workflow_dispatch:
+    inputs:
+      unconditional-invoking:
+        description: 'Invoke API unconditionally'
+        type: boolean
+        required: true
+        default: true
 jobs:
   wget:
     runs-on: ubuntu-latest
