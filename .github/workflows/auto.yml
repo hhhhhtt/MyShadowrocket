@@ -1,21 +1,15 @@
 name: auto
-
 on:
-  schedule:
-    - cron:  '30 7,19 * * *'
   workflow_dispatch:
-    inputs:
-      unconditional-invoking:
-        description: 'Invoke API unconditionally'
-        type: boolean
-        required: true
-        default: true
+  schedule:
+    - cron: '0 19 * * *'
 jobs:
-  wget:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Run generate script
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Update
         run: |
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt -nv -O ./list/proxy.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt -nv -O ./list/gfw.list
@@ -26,22 +20,9 @@ jobs:
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/cncidr.txt -nv -O ./list/cncidr.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt -nv -O ./list/direct.list
           wget https://raw.githubusercontent.com/VirgilClyne/GetSomeFries/auto-update/ruleset/ASN.China.list -nv -O ./list/ASN.China.list
-
-      - name: Commit files
+      - name: Commit changes
         run: |
-          git config --global user.email rls3nrve@duck.com
-          git config --global user.name chideap
-          git add .
-          git commit -m "Update `date +%Y/%m/%d\ %H:%M:%S\ %Z`" -a
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Cleanup Workflow Logs
-        uses: Mattraks/delete-workflow-runs@main
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          repository: ${{ github.repository }}
-          retain_days: 1
+          git config --global user.email "you@example.com"
+          git config --global user.name "action"
+          git commit -am "reject.txt"
+          git push
