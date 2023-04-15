@@ -20,7 +20,8 @@ jobs:
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/greatfire.txt -nv -O ./list/greatfire.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/tld-not-cn.txt -nv -O ./list/tld-not-cn.list
           wget https://core.telegram.org/resources/cidr.txt -nv -O ./list/telegramcidr.list
-          sed 's/^/IP-CIDR,/; s/:/IP-CIDR6,/' ./list/telegramcidr.list
+          sed -i '/^[0-9.]\{7,\}/ s/^/IP-CIDR,/' ./list/telegramcidr.list
+          sed -i '/^[0-9a-fA-F:]\{4,\}/ s/^/IP-CIDR6,/' ./list/telegramcidr.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/apple.txt -nv -O ./list/apple.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/cncidr.txt -nv -O ./list/cncidr.list
           wget https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt -nv -O ./list/direct.list
