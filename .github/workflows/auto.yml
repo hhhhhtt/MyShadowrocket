@@ -1,9 +1,9 @@
 name: auto
 
 on:
+  workflow_dispatch:
   schedule:
-    workflow_dispatch:
-    - cron:  '30 20 * * *'
+    - cron: '0 19 * * *'
 
 jobs:
   wget:
