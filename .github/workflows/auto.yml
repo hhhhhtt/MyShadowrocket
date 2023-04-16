@@ -1,14 +1,9 @@
 name: auto
 on:
   schedule:
-    - cron: '01 11,23 * * *'
-  workflow_dispatch:
-    inputs:
-      unconditional-invoking:
-        description: 'Invoke API unconditionally'
-        type: boolean
-        required: true
-        default: true
+    - cron: '06 11,23 * * *'
+  watch:
+    types: [started]
 jobs:
   wget:
     runs-on: ubuntu-latest
