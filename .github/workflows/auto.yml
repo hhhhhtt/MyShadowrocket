@@ -3,7 +3,7 @@ name: auto
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 07 * * *'
+    - cron: '50 10,22 * * *'
 
 jobs:
   wget:
