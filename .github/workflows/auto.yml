@@ -1,9 +1,8 @@
 name: auto
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '50 10,22 * * *'
+    - cron: '53 10,22 * * *'
 
 jobs:
   wget:
