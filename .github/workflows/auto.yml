@@ -1,9 +1,11 @@
 name: auto
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '06 11,23 * * *'
-  watch:
-    types: [started]
+    - cron: '18 11,23 * * *'
+  push:
+    branches:
+      - main
 jobs:
   wget:
     runs-on: ubuntu-latest
